@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 20:35:32 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/08 07:34:09 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/09 18:38:43 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo
 	pid_t			*pid;
 	sem_t			*sem;
 	sem_t			*print;
-	pthread_mutex_t	*is_dead;
+	sem_t			*is_dead;
 	struct timeval	start;
 	struct timeval	last_fed;
 }	t_philo;

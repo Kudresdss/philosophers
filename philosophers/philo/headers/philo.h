@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:26:57 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/08 01:50:52 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/09 21:03:18 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	watch_philo(t_philo	*arr);
 void	*philo(void	*phil);
 int		munch(t_philo	*p, struct timeval *now);
 void	time_to_sleep(t_philo	*p, struct timeval *now);
-void	sleeping(long sec);
+void	sleeping(long millisec);
+int		number_fed(t_philo	*p);
 int		get_time(struct timeval *now, t_philo	*p, int x);
-int		return_or_not(t_philo	*p);
-int		meal_count(t_philo	*arr, int i, int y);
+int		meal_count(t_philo	*arr, int y);
 void	fork_unlock(t_philo	*p);
 void	is_dead(t_philo	*arr, struct timeval *now, int i);
 

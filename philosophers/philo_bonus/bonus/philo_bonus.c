@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:55:29 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/08 17:29:04 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/05 21:57:11 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	sleeping(long microsec)
 
 	gettimeofday(&start, 0);
 	gettimeofday(&now, 0);
-	while (((now.tv_sec - start.tv_sec) * 1000000)
-		+ (now.tv_usec - start.tv_usec) < microsec)
+	while (((now.tv_sec - start.tv_sec) * 1000)
+		+ (now.tv_usec - start.tv_usec) / 1000 < microsec / 1000)
 	{
 		usleep(10);
 		gettimeofday(&now, 0);

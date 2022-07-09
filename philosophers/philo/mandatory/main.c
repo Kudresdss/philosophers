@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:55 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/05 20:08:04 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/09 21:03:32 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	assign_philo(t_philo	*arr, t_philo	*phil, int i)
 {
 	arr[i].ac = phil->ac;
 	arr[i].nbr_phil = phil->nbr_phil;
-	arr[i].t_to_die = 1000 * phil->t_to_die;
-	arr[i].t_to_eat = 1000 * phil->t_to_eat;
-	arr[i].t_to_slp = 1000 * phil->t_to_slp;
+	arr[i].t_to_die = phil->t_to_die;
+	arr[i].t_to_eat = phil->t_to_eat;
+	arr[i].t_to_slp = phil->t_to_slp;
 	if (phil->ac == 6)
 	{
 		arr[i].must_eat = phil->must_eat;

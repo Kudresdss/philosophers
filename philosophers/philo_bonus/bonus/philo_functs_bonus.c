@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 06:58:17 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/08 07:19:50 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/09 18:38:58 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	to_close_sem(t_philo	*phil)
 {
 	sem_close(phil->sem);
 	sem_close(phil->print);
+	sem_close(phil->is_dead);
 	sem_unlink("forks");
 	sem_unlink("print");
+	sem_unlink("is_dead");
 }
 
 void	clean_all(t_philo	*phil)

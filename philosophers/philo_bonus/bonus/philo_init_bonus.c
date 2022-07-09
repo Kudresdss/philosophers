@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:01:01 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/08 07:29:44 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/09 18:49:57 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ int	init_2(t_philo	*phil)
 {
 	sem_unlink("forks");
 	sem_unlink("print");
+	sem_unlink("is_dead");
 	phil->sem = sem_open("forks", O_CREAT, S_IRWXU, phil->nbr_phil);
 	phil->print = sem_open("print", O_CREAT, S_IRWXU, 1);
-	if (phil->sem == SEM_FAILED || phil->print == SEM_FAILED)
+	phil->is_dead = sem_open("is_dead", O_CREAT, S_IRWXU, 1);
+	if (phil->sem == SEM_FAILED || phil->print == SEM_FAILED
+		|| phil->is_dead == SEM_FAILED)
 	{
 		write(2, "Error:\nsem_open() failed\n", 25);
 		return (5);

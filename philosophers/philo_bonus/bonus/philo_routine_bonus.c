@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:32:05 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/08 07:38:31 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/09 18:39:55 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*watch_philo(void	*p)
 	phil = (t_philo *)p;
 	while (1)
 	{
-		pthread_mutex_lock(phil->is_dead);
+		sem_close(phil->is_dead);
 		if (phil->t_to_die / 1000 < get_time(&now, phil, 1)
 			- get_time(&phil->last_fed, phil, 0))
 		{
@@ -29,7 +29,7 @@ void	*watch_philo(void	*p)
 				phil->x_phil);
 			exit(1);
 		}
-		pthread_mutex_unlock(phil->is_dead);
+		sem_post(phil->is_dead);
 		sleeping(2000);
 	}
 }
@@ -42,9 +42,9 @@ void	philo_forks(t_philo	*phil, struct timeval *now)
 		get_time(now, phil, 1), phil->x_phil);
 	sem_post(phil->print);
 	sem_wait(phil->sem);
-	pthread_mutex_lock(phil->is_dead);
+	sem_close(phil->is_dead);
 	gettimeofday(&phil->last_fed, 0);
-	pthread_mutex_unlock(phil->is_dead);
+	sem_post(phil->is_dead);
 	sem_wait(phil->print);
 	printf("%d %d has taken a fork\n",
 		get_time(now, phil, 1), phil->x_phil);
@@ -69,10 +69,8 @@ void	philo_slp_and_thnk(t_philo	*phil, struct timeval *now)
 void	philo(t_philo	*phil, int i)
 {
 	struct timeval	now;
-	pthread_mutex_t	is_dead;
 	pthread_t		id;
 
-	phil->is_dead = &is_dead;
 	phil->x_phil = i;
 	phil->last_fed.tv_sec = phil->start.tv_sec;
 	phil->last_fed.tv_usec = phil->start.tv_usec;
