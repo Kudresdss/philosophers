@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:55 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/09 21:03:32 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/10 16:06:26 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	init_philo(t_philo	*arr, int ac, char	**av)
 	phil.t_to_eat = ft_atoi(av[3]);
 	phil.t_to_slp = ft_atoi(av[4]);
 	if (phil.nbr_phil <= 0 || phil.t_to_die <= 0
-		|| phil.t_to_eat < 0 || phil.t_to_slp < 0)
+		|| phil.t_to_eat <= 0 || phil.t_to_slp <= 0)
 		return (2);
 	else if (phil.ac == 6)
 	{

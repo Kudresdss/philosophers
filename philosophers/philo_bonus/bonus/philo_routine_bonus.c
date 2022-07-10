@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:32:05 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/10 15:38:59 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/10 17:21:56 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*watch_philo(void	*p)
 			exit(1);
 		}
 		sem_post(phil->is_dead);
+		sleeping(1000);
 	}
 }
 
