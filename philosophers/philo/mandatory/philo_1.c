@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 03:28:01 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/09 22:17:32 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/10 15:04:02 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 int	munch(t_philo	*p, struct timeval *now)
 {
-	// if (p->x_phil != p->nbr_phil)
-	// 	pthread_mutex_lock(&p->mutex[p->right]);
-	// else
-		pthread_mutex_lock(&p->mutex[p->left]);
+	pthread_mutex_lock(&p->mutex[p->left]);
 	pthread_mutex_lock(&p->philo->print);
 	printf("%d %d has taken a fork\n", get_time(now, p, 1), p->x_phil);
 	pthread_mutex_unlock(&p->philo->print);
 	if (p->nbr_phil == 1)
 		return (1);
-	// if (p->x_phil != p->nbr_phil)
-	// 	pthread_mutex_lock(&p->mutex[p->left]);
-	// else
-		pthread_mutex_lock(&p->mutex[p->right]);
+	pthread_mutex_lock(&p->mutex[p->right]);
 	pthread_mutex_lock(&p->philo->is_ded);
 	gettimeofday(&p->last_fed, 0);
 	pthread_mutex_unlock(&p->philo->is_ded);

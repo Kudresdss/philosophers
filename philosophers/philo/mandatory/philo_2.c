@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:12:30 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/09 21:05:17 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/10 14:52:35 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	meal_count(t_philo	*arr, int y)
 	if (arr[0].ac == 6 && y == arr[0].nbr_phil)
 	{
 		pthread_mutex_lock(&arr[0].philo->print);
-		sleeping(2);
 		printf("Philosophical hunger has been sated %d times\n",
 			arr[0].must_eat);
 		return (1);

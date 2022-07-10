@@ -6,7 +6,7 @@
 /*   By: ymirna <ymirna@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:32:05 by ymirna            #+#    #+#             */
-/*   Updated: 2022/07/09 18:39:55 by ymirna           ###   ########.fr       */
+/*   Updated: 2022/07/10 15:38:59 by ymirna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*watch_philo(void	*p)
 	phil = (t_philo *)p;
 	while (1)
 	{
-		sem_close(phil->is_dead);
+		sem_wait(phil->is_dead);
 		if (phil->t_to_die / 1000 < get_time(&now, phil, 1)
 			- get_time(&phil->last_fed, phil, 0))
 		{
@@ -30,7 +30,6 @@ void	*watch_philo(void	*p)
 			exit(1);
 		}
 		sem_post(phil->is_dead);
-		sleeping(2000);
 	}
 }
 
@@ -42,7 +41,7 @@ void	philo_forks(t_philo	*phil, struct timeval *now)
 		get_time(now, phil, 1), phil->x_phil);
 	sem_post(phil->print);
 	sem_wait(phil->sem);
-	sem_close(phil->is_dead);
+	sem_wait(phil->is_dead);
 	gettimeofday(&phil->last_fed, 0);
 	sem_post(phil->is_dead);
 	sem_wait(phil->print);
@@ -74,6 +73,8 @@ void	philo(t_philo	*phil, int i)
 	phil->x_phil = i;
 	phil->last_fed.tv_sec = phil->start.tv_sec;
 	phil->last_fed.tv_usec = phil->start.tv_usec;
+	if (i % 2 == 0)
+		sleeping(2000);
 	pthread_create(&id, 0, watch_philo, phil);
 	pthread_detach(id);
 	while (1)
